@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigup</title>
+    <link rel="stylesheet"  href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet"  href="/css/login.css" type="text/css">
+</head>
+<body >
+    <div id="bg" ></div>
+    <form action="/signup" method="POST"> 
+       <div class="title">إنشاء حساب</div> 
+      <div id="name"  class="form-field">
+          <input  type="text" name="username" placeholder="الاسم" > 
+        </div>
+          <% let usernameError = validationErrors.find(err => err.path=== 'username') %>
+         <% if (usernameError) { %>
+             <p class="alert alert-danger ">
+                 <%= usernameError.msg %>
+             </p>
+         <% } %>
+         <div class="form-field" id="email">
+            <input  type="email" name="email" placeholder="البريد الالكتروني" ></div>
+            <% let emailError = validationErrors.find(err => err.path === 'email') %>
+            <% if (emailError) { %>
+                <p class="alert alert-danger">
+                    <%= emailError.msg %>
+                </p>
+            <% } %>
+            <div class="form-field" id="password">
+          <input  type="password" name="password" placeholder="كلمة المرور" ></div>
+          <% let passwordError = validationErrors.find(err => err.path === 'password') %>
+        <% if (passwordError) { %>
+            <p class="alert alert-danger">
+                <%= passwordError.msg %>
+            </p>
+        <% } %>
+        <div class="form-field" id="password">
+        <input  type="password"  name="confirm password" placeholder="تأكيد كلمة المرور"></div>
+        <% let passwordConfirmError = validationErrors.find(err => err.path === 'passwordConfirm') %>
+        <% if (passwordConfirmError) { %>
+            <p class="alert alert-danger">
+                <%= passwordConfirmError.msg %>
+            </p>
+        <% } %>
+        <div class="form-field">
+      <button  class="btn btn-primary" type="submit"> إنشاء حساب </button>
+        <a href="/login">هل لديك حساب؟</a>
+      </div>
+    </form>
+    <% if(authError) { %>
+      <br>
+      <p class="alert alert-danger">
+          <%= authError%>
+      </p>
+    <% } %>
+  <br>
+
+</div>
+
+
+
+
+
+
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

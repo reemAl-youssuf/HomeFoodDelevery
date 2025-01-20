@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About us</title>
+
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css.map">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/about.css">
+
+</head>
+<body>
+  
+  <!-- start header  -->
+<header class="container-fluid ">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+          <a href="/" class="navbar-brand me-4">
+            <img src="img/house22.png" alt="logo" />  
+              </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav me-4">
+                <a href="/" class="nav-item nav-link ">الرئيسية</a>
+                <a href="/Kitchens" class="nav-item nav-link">مطابخنا</a>
+              <% if(isUser) { %>
+                <a href="/cart" class="nav-item nav-link">سلة المشتريات</a>
+                <a href="/favorite" class="nav-item nav-link">المفضلة</a>
+                  <% } %>
+                <a href="/about" class="nav-item nav-link">حول</a>
+                <a href="/cotactUs" class="nav-item nav-link " >اتصل بنا</a>
+            </div>
+            <div class="navbar-nav me-auto">
+              <div class="inner-container">
+                <% if(isUser) { %>
+                  <form action="/logout" method="POST">
+                    <input type="submit" value="تسجيل الخروج" class="btn btn-outline-danger">
+                  </form>
+                  <% } else { %>
+                    <a href="/login">
+                      <button class="btn btn-outline-danger">تسجيل الدخول</button>
+                    </a>
+                  <% } %>
+                </div>
+              
+              </div>
+          </div>
+      
+  </nav>
+</header>
+
+
+
+<!-- end header-->
+
+<div class="container pt-5">
+  <div class="row mt-4 ">
+    <div class="col-lg-6 col-md-12 col-sm-12 text-center ">
+<h1 class="text-secondary display-3 pb-3">نبذة عنا 
+</h1>
+<p class="mt-4">
+  نحن شركة للوجبات المنزلية، بدأنا رحلتنا كمطبخ صغير في منزلنا، وبفضل الجودة العالية لوجباتنا وسرعة التوصيل، أصبح لدينا الكثير من العملاء المخلصين. تحولت شركتنا إلى مشروع ناجح يضم فريقًا مؤهلاً ومختصًا في تقديم أفضل الوجبات المنزلية لعملائنا.
+
+رؤيتنا هي تحسين نوعية الطعام الذي يتناوله الناس والحفاظ على صحتهم، وهدفنا هو تقديم وجبات صحية وشهية بأسعار معقولة. نحن نعتمد على الجودة والتزامنا بالصحة والسلامة الغذائية، ونحرص على استخدام المكونات الطازجة والمحلية في جميع وجباتنا<span id="dots">...</span> 
+  <span class="content"><br>فريق عملنا يتمتع بخبرة واسعة في مجال الطهي والضيافة، ويسعى جاهدًا لتقديم تجربة طعام فريدة وممتعة لعملائنا. نحن نحرص على تدريب فريق العمل بانتظام على أحدث التقنيات والمعايير الصحية، لضمان تقديم وجبات آمنة وصحية لعملائنا.
+
+    نحن نفخر بتوفير خدمة توصيل سريعة وموثوقة لجميع عملائنا، ونضمن تسليم الوجبات في الوقت المحدد وبدون تأخير. نحن نهتم برضا عملائنا ونسعى جاهدين لتلبية جميع احتياجاتهم ومتطلباتهم الغذائية.</span>
+     </p>
+     <button class="btn read">Read More</button>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-12 text-center "> 
+      <img src="img/R.jpg" class="rounded-circle img-thumbnail me-lg-4 mt-sm-4" alt="">
+    </div>
+  </div>
+</div>
+
+  <script src="/js/all.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js.map"></script>
+  <script src="/js/about.js"></script>
+</body>
+</html>

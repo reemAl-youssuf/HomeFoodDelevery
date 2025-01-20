@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dishes</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css.map" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/kitchen.css" />
+    <link rel="stylesheet" href="/css/dishes.css" />
+  </head>
+  <body>
+    <div class="kitchen-header container sticky-top">
+      <div class="card shadow-0 border rounded-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+              <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                <img src="/img/<%=kitchen.image_name%>" class="main-img" />
+                <a href="/kitchens/:id/dishes">
+                  <div class="hover-overlay">
+                    <div
+                      class="mask"
+                      style="background-color: rgba(253, 253, 253, 0.15)"
+                    ></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <h5><%= kitchen.name %></h5>
+              <div class="d-flex flex-row">
+                <% for (let i = 0; i < 5; i++) { %> <% if (i < kitchen.nratings)
+                { %>
+                <div class="text-danger mb-1 me-2">
+                  <i class="fa fa-star"></i>
+                </div>
+                <% } else { %>
+                <div class="text-danger mb-1 me-2">
+                  <i class="far fa-star"></i>
+                </div>
+                <% } %> <% } %>
+                <span class="me-2">عدد التقييمات</span>
+              </div>
+              <div class="mt-1 mb-0 text-muted small">
+                <% for (categorie of categories) { %>
+                <span class="text-primary"> • </span>
+                <span><%= categorie.title %></span>
+                <% } %>
+              </div>
+              <p class="mb-4 mb-md-0"><br /><%= kitchen.description %></p>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start"
+            >
+              <div class="d-flex align-items-center mt-3">
+                <h1 class="mb-1 me-1 text-danger display-6 fw-bolder">
+                  <%=kitchen.discount %>%
+                </h1>
+              </div>
+              <h4 class="text-success">خصم على جميع الأطباق</h4>
+               <a href="\kitchens">
+              <div class="back"><button class="btn btn-outline-danger mt-3">العودة إلى المطابخ<i class="fas fa-chevron-left"></i></button></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--   search    -->
+    <div class="search w-25 m-auto mt-3">
+      <form
+        class="form-inline d-flex"
+        action="/kitchens/<%= kitchen._id %>/dishes/search"
+        method="GET"
+      >
+        <input
+          class="form-control input mr-sm-2"
+          type="search"
+          placeholder="ابحث هنا..."
+          aria-label="Search"
+          name="query"
+        />
+        <button
+          class="btn btn-outline-success me-1 my-2 my-sm-0 px-3"
+          type="submit"
+        >
+          بحث
+        </button>
+      </form>
+    </div>
+
+    <!-- filter  -->
+
+    <div class="filter-nav w-25 m-auto mt-3">
+      <% for (category of categories) { %>
+      <a
+        class="btn btn-outline-primary"
+        href="/kitchens/<%= kitchen._id %>/dishes/filter?category=<%= category._id %>"
+        data-filter="<%= category._id %>"
+      >
+        <%= category.title %>
+      </a>
+
+      <% } %>
+      <a
+        class="btn btn-success active"
+        data-filter=""
+        href="/kitchens/<%= kitchen._id %>/dishes"
+        >الكل</a
+      >
+    </div>
+
+    <!--dishes-->
+
+    <div class="container mt-4">
+      <div class="row">
+        <% for (dishe of dishes) { %>
+        <div class="col-md-3 col-sm-6 py-2">
+          <div class="product-grid">
+            <div class="product-image mb-2">
+              <a
+                href="/kitchens/<%= kitchen._id %>/dishes/<%=dishe._id %>/details"
+                class="image"
+              >
+                <img
+                  class="pic-1"
+                  src="/img/<%=dishe.image_name%>"
+                  style="width: 100%; height: 200px"
+                  alt="<%= dishe.title %>"
+                />
+              </a>
+
+              <ul class="product-links">
+                <li>
+                  <a data-tip="إضافة للمفضلة">
+                    <form action="/addToFavorites" method="POST">
+                      <input type="hidden" name="ref" value="/kitchens/<%= kitchen._id %>/dishes">
+                      <input type="hidden" name="dishId" value="<%=dishe._id %>">
+                   <button type="submit"  style="background: none; border: none;" >
+                     <i class="fas fa-heart"></i>
+                       </button>
+                      </form>
+                    </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/kitchens/<%= kitchen._id %>/dishes/<%=dishe._id %>/details"
+                    data-tip="مشاهدة التفاصيل"
+                    ><i class="fa fa-search"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <div class="product-content">
+              <ul class="rating text-danger">
+                <% for (let i = 0; i < 5; i++) { %> <% if (i < dishe.dratings) {
+                %>
+
+                <li class="fa fa-star"></li>
+
+                <% } else { %>
+                <li class="far fa-star"></li>
+                <% } %> <% } %>
+              </ul>
+
+              <h3 class="title mb-4"><a href="/kitchens/<%= kitchen._id %>/dishes/<%=dishe._id %>/details""><%= dishe.title %></a></h3>
+              <div class="price">
+                <span><%= dishe.oldprice %>$</span> <%= dishe.newprice %>$
+              </div>
+                <a href="#">
+                <form action="/cart/add" method="POST"  >
+                    <input type="number" name="amount"  min="1"
+                            max="10"
+                            value="1"
+                            class="mt-1" >
+                    <input type="hidden" name="ref" value="/kitchens/<%= kitchen._id %>/dishes">
+                    <input type="hidden" name="title" value="<%= dishe.title %> ">
+                    <input type="hidden" name="newprice" value="<%= dishe.newprice %>">
+                    <input type="hidden" name="oldprice" value="<%= dishe.oldprice %>">
+                    <input type="hidden" name="disheId" value="<%= dishe._id %>">
+                    <input type="hidden" name="redirectTo" value="/">
+                    <input type="submit" value="إضافة للسلة" class=" details shadow-none btn btn-outline-success btn-sm py-1 mb-1 " style="border-radius:5px ; ">
+                </form> 
+              </a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <script src="/js/all.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js.map"></script>
+  </body>
+</html>

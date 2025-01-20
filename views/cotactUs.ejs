@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact us</title>
+
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css.map">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/contact.css">
+
+</head>
+<body>
+  
+    
+  <!-- start header  -->
+<header class="container-fluid ">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+          <a href="/" class="navbar-brand me-4">
+            <img src="img/house22.png" alt="logo" />  
+              </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav me-4">
+                <a href="/" class="nav-item nav-link ">الرئيسية</a>
+                <a href="/Kitchens" class="nav-item nav-link">مطابخنا</a>
+              <% if(isUser) { %>
+                <a href="/cart" class="nav-item nav-link">سلة المشتريات</a>
+                <a href="/favorite" class="nav-item nav-link">المفضلة</a>
+                  <% } %>
+                <a href="/about" class="nav-item nav-link">حول</a>
+                <a href="/cotactUs" class="nav-item nav-link " >اتصل بنا</a>
+            </div>
+            <div class="navbar-nav me-auto">
+              <div class="inner-container">
+                <% if(isUser) { %>
+                  <form action="/logout" method="POST">
+                    <input type="submit" value="تسجيل الخروج" class="btn btn-outline-danger">
+                  </form>
+                  <% } else { %>
+                    <a href="/login">
+                      <button class="btn btn-outline-danger">تسجيل الدخول</button>
+                    </a>
+                  <% } %>
+                </div>
+              
+              </div>
+          </div>
+      
+  </nav>
+</header>
+
+
+
+<!-- end header-->
+
+<div class="container pt-5">
+  <div class="row  ">
+
+      <div class="col-lg-7 col-sm-12 first_col ">
+          <h1 class="text-center mt-3 text-secondary">تواصل معنا</h1>
+          <form class="p-2 mt-2">
+              <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">الاسم</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1">
+              </div>
+              <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">البريد الالكتروني</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1">
+              </div>
+              <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">رسالتك (:</label>
+                  <textarea  type="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="mb-3 text-center">
+                  <button class="btn btn-outline-success py-2 px-4">إرسال</button>
+              </div>
+          </form>
+      </div>
+      <div class="col-lg-5 d-flex align-items-center justify-content-center image">
+        <img src="img/contact2667936.jpg" class="img me-lg-5 me-md-5 mt-lg-1 mt-sm-5" alt="">
+      </div>
+  </div>
+
+  <script src="js/all.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js.map"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css.map" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <style></style>
+  </head>
+  <body class="bg-light">
+    <!-- start header  -->
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a href="/" class="navbar-brand me-4">
+          <img src="/img/house22.png" alt="logo" />
+        </a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav me-4">
+            <a href="/" class="nav-item nav-link">الرئيسية</a>
+            <a href="/Kitchens" class="nav-item nav-link">مطابخنا</a>
+            <% if(isUser) { %>
+            <a href="/cart" class="nav-item nav-link">سلة المشتريات</a>
+            <a href="/favorite" class="nav-item nav-link">المفضلة</a>
+            <% } %>
+            <a href="/about" class="nav-item nav-link">حول</a>
+            <a href="/cotactUs" class="nav-item nav-link">اتصل بنا</a>
+          </div>
+          <div class="navbar-nav me-auto">
+            <div class="inner-container">
+              <% if(isUser) { %>
+              <form action="/logout" method="POST">
+                <input
+                  type="submit"
+                  value="تسجيل الخروج"
+                  class="btn btn-outline-danger"
+                />
+              </form>
+              <% } else { %>
+              <a href="/login">
+                <button class="btn btn-outline-danger">تسجيل الدخول</button>
+              </a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- end header-->
+    <section class="my-5">
+      <div class="container">
+        <h3 class="mb-6 text-center">تم إرسال طلبك بنجاح</h3>
+        <h4 class="card-title mb-4 mt">تفاصيل الطلب:</h4>
+        <div class="row">
+          <div class="col-lg-7">
+            <% let d=4 %> <% for (let i = 0; i < items.length; i++) { %>
+            <div class="card mb-3">
+              <div class="row g-0 mt-2 mb-3">
+                <div class="col-md-3">
+                  <img class="w-100" style="height: 220px;" ;"
+                  src="/img/<%=items[i].disheId.image_name %>" alt="<%=
+                  items[i].title %>" class="img-fluid rounded-start" />
+                </div>
+                <div class="col-md-9">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= items[i].title %></h5>
+                    <br />
+                    <div class="d-flex justify-content-between">
+                      <p>الكمية:</p>
+                      <p><%= items[i].amount %></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p>سعر الواحدة بعد التخفيض:</p>
+                      <p><%= items[i].newprice %> $</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+          <!-- summary -->
+          <div class="col-lg-5">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                  <p>عنوان التوصيل:</p>
+                  <p><%= order.deliveryAddress %></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p>السعر الإجمالي:</p>
+                  <p><%= order.totalAmount + d %> $</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="/js/all.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js.map"></script>
+  </body>
+</html>

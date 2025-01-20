@@ -1,0 +1,92 @@
+/********** Template CSS **********/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #fea116;
+  --light: #f1f8ff;
+  --dark: #0f172b;
+}
+
+body{
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  overflow: hidden;
+position: relative;
+}
+
+
+
+
+
+.btn {
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.btn.btn-primary {
+  color: #ffffff;
+}
+
+@media (max-width: 991.98px) {
+  body{
+    overflow: auto;
+  }
+  .main{
+    min-height:100% ;
+  }
+
+}
+
+@media (max-width: 580px){
+div.animated{
+  text-align: center;
+}
+}
+
+
+
+
+.backGround{
+  
+  z-index: -3;
+  max-width: 100%;
+  min-height: 97%;
+}
+
+.hero-header img {
+  animation: imgRotate 50s linear infinite;
+}
+
+@keyframes imgRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+h1{
+font-weight: 500 !important;
+
+  
+}
+
+.animated{
+  animation: animate 2s linear forwards ;
+  transition: 2s;
+}
+
+@keyframes animate {
+  from{
+    visibility: hidden;
+    transform: translate(100%);}
+to{transform: translate(0);
+visibility: visible;}
+}
+.image{
+  padding: 40px;
+}
+
+.main{
+
+  background-color: rgba(0, 0, 0, .7);
+}

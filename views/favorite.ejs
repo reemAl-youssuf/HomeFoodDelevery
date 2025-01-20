@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>المفضلة</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css.map">
+        <link rel="stylesheet" href="/css/all.min.css">
+        <link rel="stylesheet" href="/css/header.css">
+
+   <style>
+    input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+button:focus{
+  box-shadow: none !important;
+}
+   </style>
+    </head>
+    <body class="bg-light">
+      <!-- start header  -->
+  <header class="container-fluid ">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+          <a href="/" class="navbar-brand me-4">
+            <img src="img/house22.png" alt="logo" />  
+              </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav me-4">
+                <a href="/" class="nav-item nav-link ">الرئيسية</a>
+                <a href="/Kitchens" class="nav-item nav-link">مطابخنا</a>
+              <% if(isUser) { %>
+                <a href="/cart" class="nav-item nav-link">سلة المشتريات</a>
+                <a href="/favorite" class="nav-item nav-link">المفضلة</a>
+                  <% } %>
+                <a href="/about" class="nav-item nav-link">حول</a>
+                <a href="/cotactUs" class="nav-item nav-link " >اتصل بنا</a>
+            </div>
+            <div class="navbar-nav me-auto">
+              <div class="inner-container">
+                <% if(isUser) { %>
+                  <form action="/logout" method="POST">
+                    <input type="submit" value="تسجيل الخروج" class="btn btn-outline-danger">
+                  </form>
+                  <% } else { %>
+                    <a href="/login">
+                      <button class="btn btn-outline-danger">تسجيل الدخول</button>
+                    </a>
+                  <% } %>
+                </div>
+              
+              </div>
+          </div>
+      
+  </nav>
+</header>
+
+
+
+<!-- end header-->
+
+
+
+<section class=" my-5">
+  <h2 class="fav-title mb-4 text-center text-muted">الوجبات المفضلة</h2>
+<%  if (favorites.length == 0)
+             {%>
+              <h5 class=" text-danger  text-center py-5 my-5" > لا يوجد أطباق مفضلة</h5> <% }%>
+    
+  <% for (dishe of favorites) { %>
+  <div class="container">
+           <div class="row"> 
+              <div class="col-md-12 col-xl-12 my-2"> 
+                <div class="card shadow-0 border rounded-3"> 
+             
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                          <img src="/img/<%=dishe.image_name%>"  alt="<%= dishe.title %>" 
+                            class="w-100" style="height: 220px;" />
+                          <a href="#!">
+                            <div class="hover-overlay">
+                              <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                            </div>
+                          </a>
+                        </div>
+                      </div> 
+                      <div class="col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-item-center">
+                        <h5><%= dishe.title %></h5>
+
+           <div class="d-flex flex-row">
+                          <span class="ms-2">عدد التقييمات</span> 
+                                 <div class="text-danger mb-1 me-2">  
+                          <% for (let i = 0; i < 5; i++) { %>     <% if (i < dishe.dratings) { %>
+                             <i class="fa fa-star"></i>
+                       <% } else { %>
+                           <i class="far fa-star"></i>  <% } %> <% } %>
+                         </div>  
+                         </div>
+                         
+                      <div class="mt-1 mb-0 text-muted small">
+                         <span class="text-primary"> • </span>
+                          <span><%=dishe.kitchen_id.name%></span>
+                          <br> </div>
+                      <div class="mt-1 mb-0 text-muted small">
+                        <span class="text-primary"> • </span>  
+                        <span><%=dishe.category_id.title%></span>
+                        </div>
+                      </div>
+                         <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                      
+                        <a href="#">   
+                          <form action=" /removeFromFavorites/<%= dishe._id %>" method="POST">
+                            <div class="d-flex flex-column mt-4 ">
+                          <button class="details shadow-none btn btn-outline-danger btn-sm py-2" type="submit">
+                            <i class="fa fa-trash ms-2"></i>
+                            إزالة من المفضلة</button>  </div>
+                          </form>
+                   </a>
+                               <a href="/kitchens/<%= dishe.kitchen_id._id %>/dishes/<%=dishe._id %>/details">   <div class="d-flex flex-column mt-4 ">
+                             <button class="details shadow-none btn btn-outline-success btn-sm py-2" type="button">تفاصيل</button>
+                          </div></a>
+               
+                      
+                   </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div><% } %>
+          </div>
+          </div>
+        </div>
+    </section>
+     <script src="/js/all.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js.map"></script>
+    </body>
+</html>
+

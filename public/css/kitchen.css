@@ -1,0 +1,15 @@
+@media (max-width: 767.98px) { .border-sm-start-none { border-left: none !important; } }
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+
+.kitchen-body{
+  font-family: "Lato", sans-serif;
+  background-image: url("../img/copy-space-italian-food-ingredients.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(2px);
+}
+.details:focus , .details:active{
+background-color: #198754;
+color: white;
+}

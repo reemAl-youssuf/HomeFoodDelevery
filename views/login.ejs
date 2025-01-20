@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/login.css" type="text/css" />
+  </head>
+  <body>
+    <div id="bg"></div>
+
+    <form action="/login" method="POST">
+      <div class="title">تسجيل الدخول</div>
+      <div class="form-field" id="email">
+        <input type="email" name="email" placeholder="البريد الالكتروني" />
+      </div>
+      <% let emailError = validationErrors.find(err => err.path === 'email') %>
+      <% if (emailError) { %>
+      <p class="alert alert-danger"><%= emailError.msg %></p>
+      <% } %>
+      <div id="password" class="form-field">
+        <input type="password" name="password" placeholder="كلمة المرور" />
+      </div>
+      <% let passwordError = validationErrors.find(err => err.path ===
+      'password') %> <% if (passwordError) { %>
+      <p class="alert alert-danger"><%= passwordError.msg %></p>
+      <% } %>
+      <div class="form-field">
+        <button class="btn" type="submit">الدخول</button>
+        <a href="/signup">هل تريد إنشاء حساب جديد؟</a>
+      </div>
+    </form>
+    <% if(authError) { %>
+    <br />
+    <p class="alert alert-danger"><%= authError%></p>
+    <% } %>
+    <br />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
